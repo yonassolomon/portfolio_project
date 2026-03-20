@@ -1,12 +1,163 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Home - My Portfolio{% endblock %}
 
 {% block content %}
+<!-- Home Section -->
 <section id="home" class="hero-section">
     <div class="container">
-        <h1>Hello, I'm {{ name }}</h1>
-        <h2>{{ title }}</h2>
+        <div class="hero-content">
+            <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
+                <h1>Hi, I'm <span class="highlight">{{ name }}</span></h1>
+                <h2>{{ title }}</h2>
+                <p class="tagline">{{ tagline }}</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-image parallax" data-aos="fade-left" data-aos-duration="1000">
+                <div class="image-wrapper">
+                    <img src="{% static 'images/profile.jpg' %}" alt="Profile Picture">
+                    <div class="image-backdrop"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about-section">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">About Me</h2>
+        <div class="about-content">
+            <div class="about-text" data-aos="fade-right" data-aos-delay="200">
+                <p>I'm a 4th-year Software Engineering student passionate about building robust backend systems and creating seamless user experiences. My journey in software development started with curiosity and has evolved into a deep passion for problem-solving and continuous learning.</p>
+                <p>I believe in writing clean, maintainable code and constantly exploring new technologies to improve my craft. When I'm not coding, you can find me contributing to open-source projects or learning about the latest tech trends.</p>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <i class="fas fa-code"></i>
+                        <span>Clean Code</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-rocket"></i>
+                        <span>Problem Solver</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-heart"></i>
+                        <span>Continuous Learner</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-stats" data-aos="fade-left" data-aos-delay="400">
+                <div class="stat-card">
+                    <div class="stat-number">3+</div>
+                    <div class="stat-label">Years Learning</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Projects</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Technologies</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="skills-section">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">My Skills</h2>
+        <div class="skills-grid">
+            {% for skill in skills %}
+            <div class="skill-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:'100' }}">
+                <div class="skill-icon">
+                    <i class="{{ skill.icon }}"></i>
+                </div>
+                <h3>{{ skill.name }}</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: {{ skill.level }}%"></div>
+                </div>
+                <span class="skill-level">{{ skill.level }}%</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="projects-section">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">My Projects</h2>
+        <div class="projects-grid">
+            {% for project in projects %}
+            <div class="project-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:'100' }}">
+                <div class="project-image">
+                    <img src="{% static project.image %}" alt="{{ project.title }}">
+                    <div class="project-overlay">
+                        <a href="{{ project.github_url }}" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                    <div class="project-tech">
+                        {% for tech in project.tech_stack %}
+                        <span class="tech-tag">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+        <div class="contact-content">
+            <div class="contact-info" data-aos="fade-right">
+                <h3>Let's Connect</h3>
+                <p>I'm always interested in hearing about new opportunities, collaborations, or just having a chat about technology.</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:yonaisol21@gmail.com">yonaisol21@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/yonassolomon" target="_blank">github.com/yonassolomon</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-telegram" aria-hidden="true"></i>
+                        <a href="https://t.me/TCallmeyon" target="_blank">@TCallmeyon</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form" data-aos="fade-left">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" class="form-control" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}

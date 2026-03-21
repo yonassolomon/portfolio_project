@@ -1,1 +1,258 @@
+/* Dark Mode Variables */
+:root {
+    --primary-color: #f97316;
+    --secondary-color: #22c55e;
+    --dark-bg: #111827;
+    --light-bg: #f9fafb;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --white: #ffffff;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
 
+/* Dark Mode Theme */
+body.dark-mode {
+    --primary-color: #fb923c;
+    --secondary-color: #4ade80;
+    --dark-bg: #030712;
+    --light-bg: #1f2937;
+    --text-dark: #f3f4f6;
+    --text-light: #9ca3af;
+    --white: #111827;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    background-color: #111827;
+    color: #f3f4f6;
+}
+
+/* Navbar Dark Mode */
+body.dark-mode .navbar {
+    background-color: rgba(17, 24, 39, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
+}
+
+body.dark-mode .nav-menu a {
+    color: #f3f4f6;
+}
+
+body.dark-mode .nav-menu a:hover {
+    color: var(--primary-color);
+}
+
+/* Hero Section Dark Mode */
+body.dark-mode .hero-section {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+/* About Section Dark Mode */
+body.dark-mode .about-section {
+    background-color: #1f2937;
+}
+
+body.dark-mode .about-text p {
+    color: #d1d5db;
+}
+
+body.dark-mode .stat-card {
+    background-color: #111827;
+}
+
+body.dark-mode .stat-card:hover {
+    background-color: #1f2937;
+}
+
+body.dark-mode .stat-label {
+    color: #9ca3af;
+}
+
+/* Skills Section Dark Mode */
+body.dark-mode .skills-section {
+    background-color: #111827;
+}
+
+body.dark-mode .skill-card {
+    background-color: #1f2937;
+}
+
+body.dark-mode .skill-card h3 {
+    color: #f3f4f6;
+}
+
+body.dark-mode .skill-level {
+    color: #9ca3af;
+}
+
+body.dark-mode .progress-bar {
+    background-color: #374151;
+}
+
+/* Projects Section Dark Mode */
+body.dark-mode .projects-section {
+    background-color: #1f2937;
+}
+
+body.dark-mode .project-card {
+    background-color: #111827;
+}
+
+body.dark-mode .project-info h3 {
+    color: #f3f4f6;
+}
+
+body.dark-mode .project-info p {
+    color: #d1d5db;
+}
+
+body.dark-mode .tech-tag {
+    background-color: #1f2937;
+    color: #e5e7eb;
+}
+
+/* Contact Section Dark Mode */
+body.dark-mode .contact-section {
+    background-color: #111827;
+}
+
+body.dark-mode .contact-info h3 {
+    color: #f3f4f6;
+}
+
+body.dark-mode .contact-info p {
+    color: #d1d5db;
+}
+
+body.dark-mode .contact-form {
+    background-color: #1f2937;
+}
+
+body.dark-mode .form-control {
+    background-color: #111827;
+    border-color: #374151;
+    color: #f3f4f6;
+}
+
+body.dark-mode .form-control:focus {
+    border-color: var(--primary-color);
+    background-color: #111827;
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #6b7280;
+}
+
+/* Footer Dark Mode */
+body.dark-mode .footer {
+    background-color: #030712;
+}
+
+body.dark-mode .footer .social-links a {
+    color: #9ca3af;
+}
+
+body.dark-mode .footer .social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-dark);
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: var(--transition);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: rotate(15deg);
+}
+
+body.dark-mode .theme-toggle {
+    color: #f3f4f6;
+}
+
+body.dark-mode .theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Dark Mode Toggle Animation */
+.theme-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover i {
+    transform: rotate(360deg);
+}
+
+/* Loading Animation Dark Mode */
+body.dark-mode .loader {
+    background-color: #111827;
+}
+
+body.dark-mode .loader p {
+    color: #f3f4f6;
+}
+
+/* Responsive Dark Mode */
+@media (max-width: 768px) {
+    body.dark-mode .nav-menu {
+        background-color: #1f2937;
+    }
+    
+    body.dark-mode .hamburger span {
+        background-color: #f3f4f6;
+    }
+}
+/* Theme toggle animation */
+.theme-toggle {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dark Mode Messages */
+body.dark-mode .alert-success {
+    background-color: #064e3b;
+    color: #a7f3d0;
+    border-left-color: #10b981;
+}
+
+body.dark-mode .alert-error {
+    background-color: #7f1d1d;
+    color: #fca5a5;
+    border-left-color: #ef4444;
+}
+
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: rgba(249, 115, 22, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.theme-toggle:active::before {
+    width: 100px;
+    height: 100px;
+}
+
+/* Dark mode transition */
+body, body * {
+    transition: background-color 0.3s ease-in-out, 
+                color 0.2s ease-in-out,
+                border-color 0.3s ease-in-out,
+                box-shadow 0.3s ease-in-out;
+}

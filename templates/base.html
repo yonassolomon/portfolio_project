@@ -5,18 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Portfolio{% endblock %}</title>
     
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- AOS Animation -->
+    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Custom CSS -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/dark-mode.css' %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
 </head>
 <body>
+    <!-- Loading Animation -->
+    <div id="loader" class="loader">
+        <div class="loader-spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
@@ -29,20 +42,52 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="nav-right">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </div>
     </nav>
 
+    <!-- Messages -->
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Main Content -->
     <main>
         {% block content %}
         {% endblock %}
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Yonas solomon. All rights reserved.</p>
+            <div class="footer-content">
+                <p>&copy; 2026 Yonas Solomon. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="https://github.com/yonassolomon" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://t.me/TCallmeyon" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="mailto:yonaisol21@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- Scripts - Only one main.js file that contains everything -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{% static 'js/main.js' %}"></script>
 </body>

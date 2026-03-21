@@ -1,6 +1,53 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
+from .models import ContactMessage
 
 def home(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        
+        if name and email and message:
+            # Save to database
+            contact_message = ContactMessage.objects.create(
+                name=name,
+                email=email,
+                message=message
+            )
+            
+            # Send email notification
+            try:
+                subject = f'New Contact Form Message from {name}'
+                email_message = f"""
+New contact form submission:
+
+Name: {name}
+Email: {email}
+Message:
+{message}
+
+Sent at: {contact_message.created_at}
+"""
+                send_mail(
+                    subject=subject,
+                    message=email_message,
+                    from_email=settings.ADMIN_EMAIL,
+                    recipient_list=[settings.ADMIN_EMAIL],
+                    fail_silently=False,
+                )
+                messages.success(request, 'Thank you for your message! I\'ll get back to you soon.')
+            except Exception as e:
+                # Log the error but still show success to user
+                print(f"Email sending failed: {e}")
+                messages.success(request, 'Thank you for your message! I\'ll get back to you soon.')
+            
+            return redirect('home')
+        else:
+            messages.error(request, 'Please fill in all fields.')
+    
     skills = [
         {'name': 'Java', 'icon': 'fab fa-java', 'level': 85},
         {'name': 'Django', 'icon': 'fab fa-python', 'level': 90},
